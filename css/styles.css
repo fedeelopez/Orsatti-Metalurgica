@@ -19,11 +19,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -559,6 +554,24 @@ span {
   margin-top: 15px;
   text-decoration: none;
   color: var(--white);
+  transition: var(--transition);
+}
+
+#mundodesarrollo p:hover{
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive */
@@ -667,7 +680,6 @@ span {
     margin: 15px;
     padding: 15px;
     transition: var(--transition);
-    width: 85%;
     height: 85%;
   }
 
@@ -708,34 +720,68 @@ span {
   .hero-title {
     font-size: 2rem;
   }
-
+  
   .hero-subtitle {
     font-size: 1.2rem;
   }
-
+  
   .btn-lg {
     padding: 0.5rem 1.5rem;
     font-size: 0.9rem;
   }
-
+  
   .service-card {
     padding: 2rem 1.5rem;
   }
+
+  .carousel-item img {
+    height: 220px;
+  }
+  
+  /* Mapa aún más bajo en móviles pequeños */
+  .map-container {
+    height: 320px;
+  }
+  
+  /* Imágenes de servicios más compactas */
+  .service-img {
+    height: 200px;
+  }
+  
+  /* Título de CTA menor para evitar saltos */
+  .cta-title {
+    font-size: 1.8rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+  }
+
+  .contact-form-card {
+    padding: 1.5rem;
+  }
+
+  .pillar-card,
+  .service-detail-card,
+  .contact-info-card {
+    padding: 2rem 1.5rem;
+  }
+  #modal-categorias .carousel-item img {
+    max-height: 45vh;
+  }
+  
+  #modal-categorias .modal-texto-container {
+    gap: 20px;
+  }
+  .estructura-imagen img {
+    height: 220px;
+  }
 }
 
-/* Animaciones */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Overrides específicos para Trabajos (sin modificar reglas existentes) */
 @media (max-width: 1200px) {
   /* En pantallas tipo iPad vertical y laptops chicas: 1 columna */
   .grid-trabajos {
@@ -746,7 +792,11 @@ span {
   .estructura-imagen img {
     height: 320px;
   }
+  .carousel-item img {
+    height: 60vh;
+  }
 }
+
 @media (max-width: 992px) {
   /* Forzar 1 columna para cada tarjeta de trabajo */
   .estructura-trabajos {
@@ -757,63 +807,62 @@ span {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
-}
 
-/* Responsive – mejoras adicionales sin modificar reglas existentes */
-@media (max-width: 1200px) {
-  .carousel-item img {
-    height: 60vh;
-  }
-}
-
-@media (max-width: 992px) {
-  /* Evitar dos columnas estrechas y alturas forzadas */
   .grid-inicio {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
-
+  
   /* Ajuste de media modal en tablets */
   .modal-content {
     width: 85%;
     height: 80%;
   }
-
-  /* Grilla de trabajos a una columna */
-  .estructura-trabajos {
-    grid-template-columns: 1fr;
-  }
-
+  
   /* Carruseles más bajos en pantallas medianas */
   .carousel-item img {
     height: 45vh;
   }
-
+  
   /* Mapa más bajo en pantallas medianas */
   .map-container {
     height: 60vh;
   }
-}
 
-@media (max-width: 576px) {
-  /* Carruseles compactos en móviles pequeños */
-  .carousel-item img {
-    height: 220px;
+  #modal-categorias {
+    padding: 15px;
   }
 
-  /* Mapa aún más bajo en móviles pequeños */
-  .map-container {
-    height: 320px;
+  #modal-categorias .modal-categorias-content {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 15px;
   }
 
-  /* Imágenes de servicios más compactas */
-  .service-img {
-    height: 200px;
+  #modal-categorias .modal-img-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    order: 1;
   }
 
-  /* Título de CTA menor para evitar saltos */
-  .cta-title {
-    font-size: 1.8rem;
+  #modal-categorias .modal-info-container {
+    width: 100%;
+    height: auto;
+    order: 2;
+  }
+
+  /* Ajustes de alto del carrusel dentro del modal para evitar overflow */
+  #modal-categorias .carousel,
+  #modal-categorias .carousel-inner {
+    height: auto;
+  }
+
+  #modal-categorias .carousel-item img {
+    height: auto;
+    max-height: 55vh;
+    object-fit: cover;
   }
 }
 
@@ -857,6 +906,19 @@ span {
   color: var(--white);
   position: relative;
   z-index: 2;
+}
+
+/* CAROUSEL SOBRE NOSOTROS*/
+#carouselExampleIndicators {
+  height: 90vh;
+  border: 5px solid var(--light-gray);
+  padding: 15px;
+  transition: var(--transition);
+}
+
+#carouselExampleIndicators:hover {
+  border: 5px solid var(--primary-color);
+  transition: var(--transition);
 }
 
 /* === MODAL CATEGORIAS ===*/
@@ -914,56 +976,6 @@ span {
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-/* Tablets y abajo */
-@media (max-width: 992px) {
-  #modal-categorias {
-    padding: 15px;
-  }
-
-  #modal-categorias .modal-categorias-content {
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    gap: 15px;
-  }
-
-  #modal-categorias .modal-img-container {
-    max-width: 100%;
-    width: 100%;
-    margin: 0;
-    order: 1;
-  }
-
-  #modal-categorias .modal-info-container {
-    width: 100%;
-    height: auto;
-    order: 2;
-  }
-
-  /* Ajustes de alto del carrusel dentro del modal para evitar overflow */
-  #modal-categorias .carousel,
-  #modal-categorias .carousel-inner {
-    height: auto;
-  }
-
-  #modal-categorias .carousel-item img {
-    height: auto;
-    max-height: 55vh;
-    object-fit: cover;
-  }
-}
-
-/* Móviles */
-@media (max-width: 576px) {
-  #modal-categorias .carousel-item img {
-    max-height: 45vh;
-  }
-
-  #modal-categorias .modal-texto-container {
-    gap: 20px;
-  }
 }
 
 #carousel1,
@@ -1031,26 +1043,39 @@ span {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  padding-top: 70px;
+  padding: 70px 0px 70px 0px;
 }
 
 .mvv-container {
   display: flex;
   align-items: center;
-  height: 95vh;
+  height: 100%;
 }
 
 .mvv-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--white);
+  background-color: var(--white);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   padding: 15px;
   text-align: center;
-  height: 100%;
+  height: 350px;
   gap: 25px;
   border-radius: 5px;
+  transition: var(--transition);
+}
+
+.mvv-card-border {
+  margin: 15px;
+  padding: 15px;
+  transition: var(--transition);
+  width: 90%;
+}
+
+.mvv-card-border:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
   transition: var(--transition);
 }
 
@@ -1076,20 +1101,6 @@ span {
 
 .mvv-card p {
   margin: 0;
-}
-
-.mvv-card-border:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary-color);
-  transition: var(--transition);
-}
-
-.mvv-card-border {
-  margin: 15px;
-  padding: 15px;
-  transition: var(--transition);
-  width: 50%;
-  height: 85%;
 }
 
 .mvv-card h4 {
@@ -1134,7 +1145,7 @@ span {
 .bg-video {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
   z-index: 0;
   filter: brightness(0.5);
@@ -1391,33 +1402,6 @@ span {
   margin: 10px;
 }
 
-/* Overrides responsive finales para asegurar prioridad en móviles */
-@media (max-width: 1200px) {
-  .grid-trabajos {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-  .estructura-imagen img {
-    height: 320px;
-  }
-}
-
-@media (max-width: 992px) {
-  .estructura-trabajos {
-    grid-template-columns: 1fr;
-  }
-  .grid-trabajos {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-}
-
-@media (max-width: 576px) {
-  .estructura-imagen img {
-    height: 220px;
-  }
-}
-
 /* Contacto */
 
 .page-hero-contacto {
@@ -1483,25 +1467,6 @@ span {
 .contact-info-card small {
   color: var(--text-color);
   font-style: italic;
-}
-
-/* Formulario de Contacto */
-.contact-form-card {
-  background: var(--white);
-  padding: 3rem;
-  border-radius: 15px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-}
-
-.form-control {
-  border: 2px solid #e9ecef;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-.form-control:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.2rem rgba(226, 13, 19, 0.25);
 }
 
 .btn-outline-primary {
@@ -1572,31 +1537,6 @@ span {
 .emergency-contact i {
   margin-right: 0.5rem;
   font-size: 1.5rem;
-}
-
-/* Responsive para páginas internas */
-
-@media (max-width: 768px) {
-}
-
-@media (max-width: 576px) {
-  .page-title {
-    font-size: 2rem;
-  }
-
-  .page-subtitle {
-    font-size: 1rem;
-  }
-
-  .contact-form-card {
-    padding: 1.5rem;
-  }
-
-  .pillar-card,
-  .service-detail-card,
-  .contact-info-card {
-    padding: 2rem 1.5rem;
-  }
 }
 
 .animate-in {

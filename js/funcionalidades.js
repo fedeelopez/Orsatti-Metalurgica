@@ -77,39 +77,6 @@ document.addEventListener('click', (e) => {
 });
 
 // Modal para funcionalidades de la pagina principal
-//Ocultar btn back to top al abrir modal
-// Función para crear y mostrar el modal
-function mostrarModal(titulo, descripcion, imagenes = []) {
-  const backToTopBtn = document.querySelector('.back-to-top');
-  const modalCategorias = document.getElementById('modal-categorias');
-  modalCategorias.style.display = 'flex';
-
-  const carouselHTML = crearCarousel('carouselModal', imagenes);
-
-  modalCategorias.innerHTML = `
-    <div class="modal-categorias-content">
-      <span class="cerrar">&times;</span>
-      <div class="modal-img-container">
-        ${carouselHTML}
-      </div>
-      <div class="modal-info-container">
-        <div class="modal-texto-container">
-          <h2>${titulo}</h2>
-          <p>${descripcion}</p>
-        </div>
-        <a href="https://wa.me/2235402839?text=Hola! Quiero cotizar un trabajo."
-           class="btn btn-primary mt-3"
-           target="_blank"
-           rel="noopener noreferrer">
-          Quiero contactarme
-        </a>
-      </div>
-    </div>
-  `;
-  backToTopBtn.style.display = 'none';
-  navBar.classList.add('head-oculto');
-  document.body.style.overflow = 'hidden';
-}
 
 //FN para crear Carousel
 function crearCarousel(id, imagenes = []) {
@@ -138,6 +105,39 @@ function crearCarousel(id, imagenes = []) {
     </div>`;
 }
 
+//FN para mostrar modal
+function mostrarModal(titulo, descripcion, imagenes = []) {
+  const backToTopBtn = document.querySelector('.back-to-top');
+  const modalCategorias = document.getElementById('modal-categorias');
+  modalCategorias.style.display = 'flex';
+  
+  backToTopBtn.style.display = 'none';
+  navBar.classList.add('head-oculto');
+  document.body.style.overflow = 'hidden';
+  const carouselHTML = crearCarousel('carouselModal', imagenes);
+
+  modalCategorias.innerHTML = `
+    <div class="modal-categorias-content">
+      <span class="cerrar">&times;</span>
+      <div class="modal-img-container">
+        ${carouselHTML}
+      </div>
+      <div class="modal-info-container">
+        <div class="modal-texto-container">
+          <h2>${titulo}</h2>
+          <p>${descripcion}</p>
+        </div>
+        <a href="https://wa.me/2235402839?text=Hola! Quiero cotizar un trabajo."
+           class="btn btn-primary mt-3"
+           target="_blank"
+           rel="noopener noreferrer">
+          Quiero contactarme
+        </a>
+      </div>
+    </div>
+  `;
+}
+
 //FN para cerrar modal
 function cerrarModalCategorias() {
   const modalCategorias = document.getElementById('modal-categorias');
@@ -156,10 +156,10 @@ document.addEventListener('click', (e) => {
   'Trabajos en aluminio',
   'Desarrollamos soluciones a medida en aluminio, un material que combina ligereza, versatilidad y resistencia a la corrosión. Gracias a sus propiedades, es ideal para la fabricación de estructuras, cerramientos, piezas industriales y proyectos de diseño que requieren precisión y estética',
   [
-    "/assets/imgs/DSC00949.jpg",
-    "/assets/imgs/DSC00986.jpg",
-    "/assets/imgs/DSC01031.jpg",
-    "/assets/imgs/DSC00964.jpg"
+    "/assets/imgs/cocina-aluminio.jpeg",
+    "/assets/imgs/DSC00919.jpg",
+    "/assets/imgs/.jpg",
+    "/assets/imgs/.jpg"
   ]
   );
 
@@ -169,10 +169,11 @@ document.addEventListener('click', (e) => {
   'Trabajos en acero',
   'Ofrecemos servicios especializados en trabajos con acero, un material conocido por su durabilidad y resistencia. Desde la fabricación de estructuras metálicas hasta la creación de piezas personalizadas, nuestro equipo utiliza técnicas avanzadas para garantizar resultados de alta calidad en cada proyecto.',
   [
-    "/assets/imgs/DSC00949.jpg",
-    "/assets/imgs/DSC00986.jpg",
-    "/assets/imgs/DSC01031.jpg",
-    "/assets/imgs/DSC00964.jpg"
+    "/assets/imgs/balcon-acero.jpeg",
+    "/assets/imgs/marquesina-acero.jpeg",
+    "/assets/imgs/parrilla-acero.avif",
+    "/assets/imgs/reja-acero.avif",
+    './assets/imgs/escalera2-acero.jpeg'
   ]
   );
   }
@@ -181,9 +182,10 @@ document.addEventListener('click', (e) => {
   'Contamos con tecnología avanzada para el corte y plegado de metales, permitiéndonos ofrecer soluciones precisas y eficientes para una amplia variedad de aplicaciones industriales y comerciales. Nuestro equipo está capacitado para manejar diferentes tipos de materiales, asegurando acabados de alta calidad y adaptados a las necesidades específicas de cada cliente.',
   [
     './assets/imgs/plegado-img.avif',
-    './assets/imgs/corte-img.avif',
-    './assets/imgs/plegado2-img.avif',
-    './assets/imgs/corte2-img.avif'
+    './assets/imgs/DSC00933.jpg',
+    './assets/imgs/plegado-modal-img.avif',
+    './assets/imgs/plegado-modal-img2.avif',
+    './assets/imgs/DSC01023.jpg'
   ]
   );
   }
