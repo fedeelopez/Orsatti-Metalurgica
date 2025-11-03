@@ -19,6 +19,11 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -558,7 +563,6 @@ span {
 
 /* Responsive */
 @media (max-width: 768px) {
-
   .hero-title {
     font-size: 2.5rem;
   }
@@ -571,7 +575,7 @@ span {
     font-size: 1rem;
   }
 
-  .hero-buttons .btn{
+  .hero-buttons .btn {
     margin-bottom: 1rem;
   }
 
@@ -623,15 +627,6 @@ span {
     height: 70%;
     border-radius: 4px;
   }
-  /* Asegurar columna única y filas auto también en móviles */
-  .grid-trabajos {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-  /* Altura más contenida para las imágenes del carrusel dentro de trabajos */
-  .estructura-imagen img {
-    height: 240px;
-  }
 
   /* Eliminar filas de 95vh en tarjetas de inicio */
   .grid-inicio {
@@ -643,21 +638,18 @@ span {
     height: 240px;
   }
 
-  /* Grilla de trabajos más fluida y compacta */
-  .grid-trabajos {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-template-rows: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  /* Imágenes de estructuras con menor altura */
-  .estructura-imagen img {
-    height: 260px;
-  }
-
   .estructura-trabajos {
     grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Trabajos: imagen arriba, texto abajo */
+  .estructura-trabajos > .carousel {
+    grid-row: 1;
+  }
+  .estructura-trabajos > .estructura-texto {
+    grid-row: 2;
   }
 
   /* Mapa más bajo en móviles */
@@ -682,6 +674,33 @@ span {
   .grid-proyectos {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-template-rows: auto;
+  }
+
+  #carousel1,
+  #carousel2,
+  #carousel3 {
+    height: 100px;
+    border: 5px solid var(--light-gray);
+    padding: 15px;
+    transition: var(--transition);
+  }
+
+  #carousel1:hover,
+  #carousel2:hover,
+  #carousel3:hover {
+    border: 5px solid var(--primary-color);
+    transition: var(--transition);
+  }
+
+  /* Responsive específico para el modal de categorías (inicio) */
+  #modal-categorias {
+    overflow-y: auto;
+  }
+
+  #modal-categorias .modal-categorias-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 }
 
@@ -774,7 +793,6 @@ span {
   .map-container {
     height: 60vh;
   }
-
 }
 
 @media (max-width: 576px) {
@@ -842,11 +860,11 @@ span {
 }
 
 /* === MODAL CATEGORIAS ===*/
-#modal-categorias{
+#modal-categorias {
   display: none;
   justify-content: center;
   align-items: center;
-  padding:25px;
+  padding: 25px;
   position: fixed;
   top: 0;
   left: 0;
@@ -857,30 +875,30 @@ span {
   backdrop-filter: blur(5px);
 }
 
-.modal-categorias-content{
-  display:flex;
+.modal-categorias-content {
+  display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
 }
 
-.modal-info-container{
+.modal-info-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 50%;
-  height:100%;
+  height: 100%;
   color: var(--white);
 }
 
-.modal-texto-container{
+.modal-texto-container {
   display: flex;
   flex-direction: column;
-  gap:30px;
+  gap: 30px;
 }
 
-.modal-img-container{
-  display:flex;
+.modal-img-container {
+  display: flex;
   width: 100%;
   max-width: 500px;
   margin: 25px;
@@ -894,39 +912,93 @@ span {
 .modal-img-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
   display: block;
 }
 
-#carousel1, #carousel2, #carousel3{
+/* Tablets y abajo */
+@media (max-width: 992px) {
+  #modal-categorias {
+    padding: 15px;
+  }
+
+  #modal-categorias .modal-categorias-content {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 15px;
+  }
+
+  #modal-categorias .modal-img-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    order: 1;
+  }
+
+  #modal-categorias .modal-info-container {
+    width: 100%;
+    height: auto;
+    order: 2;
+  }
+
+  /* Ajustes de alto del carrusel dentro del modal para evitar overflow */
+  #modal-categorias .carousel,
+  #modal-categorias .carousel-inner {
+    height: auto;
+  }
+
+  #modal-categorias .carousel-item img {
+    height: auto;
+    max-height: 55vh;
+    object-fit: cover;
+  }
+}
+
+/* Móviles */
+@media (max-width: 576px) {
+  #modal-categorias .carousel-item img {
+    max-height: 45vh;
+  }
+
+  #modal-categorias .modal-texto-container {
+    gap: 20px;
+  }
+}
+
+#carousel1,
+#carousel2,
+#carousel3 {
   height: 90vh;
   border: 5px solid var(--light-gray);
   padding: 15px;
   transition: var(--transition);
 }
 
-#carousel1:hover, #carousel2:hover, #carousel3:hover {
+#carousel1:hover,
+#carousel2:hover,
+#carousel3:hover {
   border: 5px solid var(--primary-color);
   transition: var(--transition);
 }
 
-.carousel-overlay{
-  display:flex;
+.carousel-overlay {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
   z-index: 50;
   width: 90%;
-  height:95%;
+  height: 95%;
   padding: 15px;
   margin: 15px;
 }
 
-.info-carousel{
+.info-carousel {
   padding: 15px;
   border-left: 5px solid var(--primary-color);
   backdrop-filter: blur(3px);
-  color:var(--white);
+  color: var(--white);
 }
 
 .carousel-inner {
@@ -1319,6 +1391,33 @@ span {
   margin: 10px;
 }
 
+/* Overrides responsive finales para asegurar prioridad en móviles */
+@media (max-width: 1200px) {
+  .grid-trabajos {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .estructura-imagen img {
+    height: 320px;
+  }
+}
+
+@media (max-width: 992px) {
+  .estructura-trabajos {
+    grid-template-columns: 1fr;
+  }
+  .grid-trabajos {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .estructura-imagen img {
+    height: 220px;
+  }
+}
+
 /* Contacto */
 
 .page-hero-contacto {
@@ -1437,7 +1536,7 @@ span {
   height: 100vh;
 }
 
-.text-ubi{
+.text-ubi {
   color: var(--primary-color);
   font-weight: 600;
 }
@@ -1478,7 +1577,6 @@ span {
 /* Responsive para páginas internas */
 
 @media (max-width: 768px) {
-
 }
 
 @media (max-width: 576px) {
@@ -1531,4 +1629,3 @@ span {
   background: #c00a0f !important;
   transform: translateY(-2px);
 }
-
